@@ -205,8 +205,8 @@
             background: #056d4e
           }
           &:disabled{
-            background: #CCCCCC !important;
-            color: #FFF !important;
+            background: #F1F1F1 !important;
+            color: #6F6F6F !important;
             cursor: not-allowed !important;
           }
         }
