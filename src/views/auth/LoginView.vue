@@ -157,12 +157,12 @@ async function login(){
               }
               &:focus{
                 outline: none;
-                color: #079F72;
+                color: $fluxoo-primary-color;
                 &::placeholder{
                   color: transparent;
                 }
                 & ~ svg{
-                  stroke: #079F72;
+                  stroke: $fluxoo-primary-color;
                 }
               }
             }
@@ -178,7 +178,7 @@ async function login(){
               transition: stroke .2s;
               cursor: pointer;
               &:hover{
-                stroke: #079F72;
+                stroke: $fluxoo-primary-color;
               }
             }
           }
@@ -197,11 +197,11 @@ async function login(){
                 display: none;
                 &:checked{
                   & ~ span{
-                    border: 2px solid #079F72;
-                    background: #079F72;
+                    border: 2px solid $fluxoo-primary-color;
+                    background: $fluxoo-primary-color;
                   }
                   & ~ p{
-                    color: #079F72;
+                    color: $fluxoo-primary-color;
                   }
                 }
               }
@@ -239,7 +239,7 @@ async function login(){
               }
             }
             a{
-              color: #079F72;
+              color: $fluxoo-primary-color;
               font-family: 'Inter', sans-serif;
               font-size: 14px;
               font-style: normal;
@@ -254,7 +254,7 @@ async function login(){
             height: 60px;
             border: none;
             border-radius: 30px;
-            background: #079F72;
+            background: $fluxoo-primary-color;
             color: #FFF;
             text-align: center;
             font-family: 'Inter', sans-serif;

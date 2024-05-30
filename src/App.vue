@@ -14,4 +14,8 @@ import 'vue3-toastify/dist/index.css';
     text-align: center;
     color: #2c3e50;
   }
+
+  :root{
+      --fluxoo-primary-color:#079F72
+  }
 </style>
