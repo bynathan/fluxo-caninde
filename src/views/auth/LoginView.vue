@@ -6,37 +6,69 @@
     <section>
       <img src="../../assets/images/prefeitura-caninde.png" alt="Logo Prefeitura de Canindé.">
       <h1>Bem-vindo (a) de volta!</h1>
-      <form action="">
+      <form @submit="$event.preventDefault()" action="">
         <section>
           <label for="email">Digite seu e-mail  <strong>*</strong></label>
-          <input type="text" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
+          <input v-model="loginForm.email" type="text" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
         </section>
         <section>
           <label for="password">Digite sua senha  <strong>*</strong></label>
-          <input type="password" placeholder="••••••••" name="password" id="password">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="vuesax/linear/eye">
-            <g id="eye">
-            <path id="Vector" d="M15.58 11.9999C15.58 13.9799 13.98 15.5799 12 15.5799C10.02 15.5799 8.41998 13.9799 8.41998 11.9999C8.41998 10.0199 10.02 8.41992 12 8.41992C13.98 8.41992 15.58 10.0199 15.58 11.9999Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="Vector_2" d="M12 20.2702C15.53 20.2702 18.82 18.1902 21.11 14.5902C22.01 13.1802 22.01 10.8102 21.11 9.40021C18.82 5.80021 15.53 3.72021 12 3.72021C8.47003 3.72021 5.18003 5.80021 2.89003 9.40021C1.99003 10.8102 1.99003 13.1802 2.89003 14.5902C5.18003 18.1902 8.47003 20.2702 12 20.2702Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-            </g>
-          </svg>
+          <input v-model="loginForm.password" :type="showPassword ? 'text':'password'" placeholder="••••••••" name="password" id="password">
+          <button type="button" @click="showPassword = !showPassword">
+            <svg v-if="showPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="vuesax/linear/eye">
+              <g id="eye">
+              <path id="Vector" d="M15.58 11.9999C15.58 13.9799 13.98 15.5799 12 15.5799C10.02 15.5799 8.41998 13.9799 8.41998 11.9999C8.41998 10.0199 10.02 8.41992 12 8.41992C13.98 8.41992 15.58 10.0199 15.58 11.9999Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path id="Vector_2" d="M12 20.2702C15.53 20.2702 18.82 18.1902 21.11 14.5902C22.01 13.1802 22.01 10.8102 21.11 9.40021C18.82 5.80021 15.53 3.72021 12 3.72021C8.47003 3.72021 5.18003 5.80021 2.89003 9.40021C1.99003 10.8102 1.99003 13.1802 2.89003 14.5902C5.18003 18.1902 8.47003 20.2702 12 20.2702Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              </g>
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14.5299 9.46992L9.46992 14.5299C8.81992 13.8799 8.41992 12.9899 8.41992 11.9999C8.41992 10.0199 10.0199 8.41992 11.9999 8.41992C12.9899 8.41992 13.8799 8.81992 14.5299 9.46992Z" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17.8198 5.76998C16.0698 4.44998 14.0698 3.72998 11.9998 3.72998C8.46984 3.72998 5.17984 5.80998 2.88984 9.40998C1.98984 10.82 1.98984 13.19 2.88984 14.6C3.67984 15.84 4.59984 16.91 5.59984 17.77" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.41992 19.5299C9.55992 20.0099 10.7699 20.2699 11.9999 20.2699C15.5299 20.2699 18.8199 18.1899 21.1099 14.5899C22.0099 13.1799 22.0099 10.8099 21.1099 9.39993C20.7799 8.87993 20.4199 8.38993 20.0499 7.92993" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.5099 12.7C15.2499 14.11 14.0999 15.26 12.6899 15.52" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.47 14.53L2 22" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21.9998 2L14.5298 9.47" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </section>
         <div>
           <label for="remember">
-            <input type="checkbox" name="remember" id="remember">
+            <input type="checkbox" name="remember" id="remember" v-model="loginForm.remeber">
             <span></span>
             <p>Permanecer logado</p>
           </label>
-          <a href="">Esqueci a senha</a>
+          <RouterLink :to="{name:'recover-password'}">Esqueci a senha</RouterLink>
         </div>
-        <input type="button" value="Entrar">
+        <input :disabled="!(loginForm.email && loginForm.password)" @click="login" type="button" value="Entrar">
       </form>
       <img src="../../assets/images/logo-fluxoo.png" alt="Logo fluxoo.">
     </section>
   </main>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { useAxios, ApiErrorResponse } from '@/api/axios'
+import { AxiosError, AxiosResponse } from 'axios';
+import { toast } from 'vue3-toastify';
+
+const showPassword = ref<boolean>(false)
+const loginForm = ref<{email?:string, password?:string, remeber?:boolean}>({})
+const axios = useAxios()
+
+async function login(){
+  axios.post('/login', loginForm.value)
+  .then((res: AxiosResponse) => {
+    toast.success('logado com sucesso!')
+  }).catch((e: AxiosError<ApiErrorResponse>) => {
+    for(let input in e.response?.data.errors){
+      toast.error(e.response?.data.errors[input][0])
+    }
+  })
+}
+</script>
 
 <style scoped lang="scss">
   main{
@@ -317,6 +349,3 @@
     }
   }
 </style>
-
-<script lang="ts" setup>
-</script>

@@ -12,3 +12,15 @@ body{
         width: 0;
     }
 }
+
+button {
+    appearance: none;         /* Remove a aparência padrão em navegadores modernos */
+    -webkit-appearance: none; /* Remove a aparência padrão em navegadores WebKit */
+    -moz-appearance: none;    /* Remove a aparência padrão em navegadores Mozilla */
+    background: none;         /* Remove o fundo padrão */
+    border: none;             /* Remove a borda padrão */
+    padding: 0;               /* Remove o padding padrão */
+    font: inherit;            /* Herda a fonte do elemento pai */
+    color: inherit;           /* Herda a cor do texto do elemento pai */
+    cursor: pointer;          /* Altera o cursor para indicar que é clicável */
+}
