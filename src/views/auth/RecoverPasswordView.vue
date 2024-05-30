@@ -14,14 +14,30 @@
     <form action="">
       <div>
         <label for="email">Digite seu e-mail *</label>
-        <input type="text" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
+        <input v-model="email" type="email" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
       </div>
       <nav>
-        <input type="button" value="Solicitar">
+        <input @click="recoverPasword" :disabled="!email.length" type="button" value="Solicitar">
       </nav>
     </form>
   </main>
 </template>
+
+<script setup lang="ts">
+import { useAxios } from '@/api/axios';
+import { ref } from 'vue';
+import { toast } from 'vue3-toastify';
+
+const email = ref<string>('')
+const axios = useAxios()
+
+function recoverPasword(): void{
+  axios.post('/forgot-password', { email: email.value })
+  .then(() => {
+    toast.success('Um email contendo o link de recuperação de senha foi enviado')
+  })
+}
+</script>
 
 <style scoped lang="scss">
   main{

@@ -14,18 +14,39 @@
     <form action="">
       <div>
         <label for="new-password">Crie uma nova senha *</label>
-        <input type="password" placeholder="Com pelo menos 6 caracteres" name="new-password" id="new-password">
+        <input v-model="resetPasswordForm.password" type="password" placeholder="Com pelo menos 6 caracteres" name="new-password" id="new-password">
       </div>
       <div>
         <label for="confirm-new-password">Repita a nova senha *</label>
-        <input type="password" placeholder="A mesma do campo anterior" name="confirm-new-password" id="confirm-new-password">
+        <input v-model="resetPasswordForm.password_confirmation" type="password" placeholder="A mesma do campo anterior" name="confirm-new-password" id="confirm-new-password">
       </div>
       <nav>
-        <input type="button" value="Criar">
+        <input :disabled="!resetPasswordForm.password || !resetPasswordForm?.password_confirmation || (resetPasswordForm.password != resetPasswordForm?.password_confirmation) || resetPasswordForm.password?.length < 6" type="button" value="Criar" @click="resetPassword">
       </nav>
     </form>
   </main>
 </template>
+
+<script lang="ts" setup>
+import { useAxios } from '@/api/axios';
+import router from '@/router';
+import { ref, defineProps } from 'vue';
+import { useRoute } from 'vue-router';
+// import { toast } from 'vue3-toastify';
+
+const route = useRoute()
+const props = defineProps<{token: string, email: string}>()
+const resetPasswordForm = ref({password: '', password_confirmation:'', token: props.token, email: route.query.email})
+const axios = useAxios()
+
+function resetPassword(){
+  axios.post('/reset-password', resetPasswordForm.value)
+  .then(() => {
+    // toast.success('Senha redefinida com sucesso');
+    router.push({name:'login'})
+  })
+}
+</script>
 
 <style scoped lang="scss">
   main{

@@ -50,9 +50,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useAxios, ApiErrorResponse } from '@/api/axios'
-import { AxiosError, AxiosResponse } from 'axios';
-import { toast } from 'vue3-toastify';
+import { useAxios } from '@/api/axios'
+// import { toast } from 'vue3-toastify';
 
 const showPassword = ref<boolean>(false)
 const loginForm = ref<{email?:string, password?:string, remeber?:boolean}>({})
@@ -60,12 +59,9 @@ const axios = useAxios()
 
 async function login(){
   axios.post('/login', loginForm.value)
-  .then((res: AxiosResponse) => {
-    toast.success('logado com sucesso!')
-  }).catch((e: AxiosError<ApiErrorResponse>) => {
-    for(let input in e.response?.data.errors){
-      toast.error(e.response?.data.errors[input][0])
-    }
+  .then(() => {
+    // toast.success('logado com sucesso!')
+    // todo redirecionar pro admin
   })
 }
 </script>

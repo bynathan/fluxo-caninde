@@ -21,9 +21,10 @@ const routes: Array<RouteRecordRaw> = [
     component: RecoverPasswordView
   },
   {
-    path: '/reset-password',
-    name: 'reset-password',
-    component: ResetPassword
+    path: '/password-reset/:token',
+    name: 'password-reset',
+    component: ResetPassword,
+    props: true
   },
   {
     path: '/about',
