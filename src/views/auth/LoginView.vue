@@ -13,7 +13,7 @@
         </section>
         <section>
           <label for="password">Digite sua senha  <strong>*</strong></label>
-          <input v-model="loginForm.password" :type="showPassword ? 'text':'password'" placeholder="••••••••" name="password" id="password">
+          <input v-model="loginForm.password" :type="showPassword ? 'text':'password'" placeholder="ex: 123456" name="password" id="password">
           <button type="button" @click="showPassword = !showPassword">
             <svg v-if="showPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="vuesax/linear/eye">
@@ -49,24 +49,26 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useAxios } from '@/api/axios'
-// import { toast } from 'vue3-toastify';
+  import { ref } from 'vue'
+  import { useAxios } from '@/api/axios'
+  // import { toast } from 'vue3-toastify';
 
-const showPassword = ref<boolean>(false)
-const loginForm = ref<{email?:string, password?:string, remeber?:boolean}>({})
-const axios = useAxios()
+  const showPassword = ref<boolean>(false)
+  const loginForm = ref<{email?:string, password?:string, remeber?:boolean}>({})
+  const axios = useAxios()
 
-async function login(){
-  axios.post('/login', loginForm.value)
-  .then(() => {
-    // toast.success('logado com sucesso!')
-    // todo redirecionar pro admin
-  })
-}
+  async function login(){
+    axios.post('/login', loginForm.value)
+    .then(() => {
+      // toast.success('logado com sucesso!')
+      // todo redirecionar pro admin
+    })
+  }
 </script>
 
 <style scoped lang="scss">
+  @import '../../global/scss/variables.scss';
+
   main{
     min-height: 100vh;
     display: grid;
@@ -79,11 +81,13 @@ async function login(){
         background-position: 0 0;
       }
       &:last-child{
+        max-height: 869px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 20px 0;
+        margin: auto 0;
         img{
           &:first-child{
             width: 111px;
@@ -265,7 +269,7 @@ async function login(){
             transition: background .2s;
             cursor: pointer;
             &:hover{
-              background: #056d4e
+              background: $fluxoo-primary-color-hover;
             }
             &:disabled{
               background: #F1F1F1 !important;
