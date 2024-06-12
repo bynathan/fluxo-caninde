@@ -1,0 +1,62 @@
+@keyframes enterContent{
+    0%{
+        display: flex;
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes leaveContent{
+    0%{
+        display: flex;
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@keyframes enterContentOptionsMenu{
+    0%{
+        display: flex;
+        opacity: 0;
+        height: 0;
+        margin: 0;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+        height: 150px;
+        margin: 9px 0 10px;
+    }
+}
+
+@keyframes leaveContentOptionsMenu{
+    0%{
+        display: flex;
+        opacity: 1;
+        height: 150px;
+        margin: 9px 0 10px;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        height: 0;
+        margin: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes enterToBottom{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}

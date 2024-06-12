@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="reset">
     <label @click="$router.go(-2)" class="back">
       <figure>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -36,6 +36,12 @@
   import { useRoute } from 'vue-router';
   // import { toast } from 'vue3-toastify';
 
+  /* Starts at the top of the page */
+  window.scrollTo({
+    top: 0,
+    behavior: 'auto'
+  });
+
   const route = useRoute()
   const props = defineProps<{token: string, email: string}>()
   const resetPasswordForm = ref({password: '', password_confirmation:'', token: props.token, email: route.query.email})
@@ -51,7 +57,10 @@
 </script>
 
 <style scoped lang="scss">
-  div{
+  @import '../../global/scss/variables.scss';
+
+  #reset{
+    animation: enterContent ease .4s;
     width: 100%;
     max-width: 425px;
     height: 100%;
@@ -70,13 +79,13 @@
       margin: 0 auto 45px 0;
       &:hover{
         figure{
-          background: #079F72;
+          background: $fluxoo-primary-color;
         }
         svg{
           stroke: #FFF;
         }
         p{
-          color: #079F72;
+          color: $fluxoo-primary-color;
         }
       }
       figure{
@@ -193,12 +202,12 @@
             }
             &:focus{
               outline: none;
-              color: #079F72;
+              color: $fluxoo-primary-color;
               &::placeholder{
                 color: transparent;
               }
               & ~ svg{
-                stroke: #079F72;
+                stroke: $fluxoo-primary-color;
               }
             }
           }
@@ -214,7 +223,7 @@
             transition: stroke .2s;
             cursor: pointer;
             &:hover{
-              stroke: #079F72;
+              stroke: $fluxoo-primary-color;
             }
           }
         }
@@ -226,7 +235,7 @@
             height: 60px;
             border: none;
             border-radius: 30px;
-            background: #079F72;
+            background: $fluxoo-primary-color;
             color: #FFF;
             text-align: center;
             font-family: 'Inter', sans-serif;
@@ -251,13 +260,13 @@
   }
 
   @media (max-height: 945px) {
-    div main form nav input[type='button'] {
+    #reset main form nav input[type='button'] {
       margin: 0 !important;
     }
   }
 
   @media(max-width: 425px){
-    main{
+    #reset{
       .back{
         margin: 0 auto 40px 0;
       }

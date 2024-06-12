@@ -16,6 +16,6 @@ import 'vue3-toastify/dist/index.css';
   }
 
   :root{
-      --fluxoo-primary-color:#079F72
+      --fluxoo-primary-color: #079F72
   }
 </style>

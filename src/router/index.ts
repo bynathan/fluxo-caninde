@@ -1,15 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import RecoverPasswordView from '@/views/auth/RecoverPasswordView.vue'
 import ResetPassword from '@/views/auth/ResetPassword.vue'
+import AdminLayout from '@/layouts/admin/AdminLayout.vue'
+import HomeView from '../views/admin/home/HomeView.vue'
+import ResultsView from '../views/admin/results/ResultsView.vue'
+import ProfileView from '../views/admin/profile/ProfileView.vue'
+import HelpView from '../views/admin/help/HelpView.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
   {
     path: '/login',
     name: 'login',
@@ -27,12 +26,26 @@ const routes: Array<RouteRecordRaw> = [
     props: true
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/admin',
+    component: AdminLayout,
+    children: [
+      {
+        path: 'home',
+        component: HomeView
+      },
+      {
+        path: 'results',
+        component: ResultsView
+      },
+      {
+        path: 'help',
+        component: HelpView
+      },
+      {
+        path: 'profile',
+        component: ProfileView
+      },
+    ]
   }
 ]
 
