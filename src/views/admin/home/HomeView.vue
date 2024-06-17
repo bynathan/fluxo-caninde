@@ -11,8 +11,8 @@
             </section>
             <section>
                 <div class="infos">
-                    <h1>Olá, <strong>{{ user.name }}</strong></h1>
-                    <!-- <h2>Último acesso em 77/77/77 as 77:77</h2> -->
+                    <h1>Olá, <strong>Nome Sobrenome</strong></h1>
+                    <h2>Último acesso em 00/00/24 as 00:00</h2>
                 </div>
                 <button @click="isNotificationsModalOpen = true">
                     <figure>
@@ -23,7 +23,7 @@
                         </svg>
                     </figure>
                 </button>
-                <div @click="$router.push('/admin/profile')" class="profile" :style="{backgroundImage: `url('${storageUrl + user.image}')`}" role="img" aria-label="Foto de perfil do usuário."></div>
+                <div @click="$router.push('/admin/profile')" class="profile" :style="{backgroundImage: `url('https://img.freepik.com/fotos-gratis/confiante-jovem-empresario-em-terno-de-pe-com-os-bracos-cruzados_171337-18616.jpg')`}" role="img" aria-label="Foto de perfil do usuário."></div>
             </section>
         </header>
         <div class="alert red" v-if="isAlertVisible">
