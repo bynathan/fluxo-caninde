@@ -8,8 +8,8 @@
             </figure>
             <p>Perfil</p>
         </label>
-        <input type="radio" name="profile" id="profile-register" checked>
-        <input type="radio" name="profile" id="profile-password">
+        <input autocomplete='off' type="radio" name="profile" id="profile-register" checked>
+        <input autocomplete='off' type="radio" name="profile" id="profile-password">
         <main>
             <div class="tab">
               <label for="profile-register">Cadastro</label>
@@ -18,9 +18,9 @@
             <form class="register">
               <div class="photo">
                 <h1>Foto do usuário</h1>
-                <div class="data" :class="{ 'nophoto': imageProfileBase64 == '' }">
-                  <div :style="{ backgroundImage: 'url(' + imageProfileBase64 + ')' }">
-                    <label v-if="imageProfileBase64 == ''" class="tooltip" for="profile-photo">
+                <div class="data" :class="{ 'nophoto': imageProfileBase64 == '' && !user.image}">
+                  <div :style="{ backgroundImage: 'url(' + (imageProfileBase64 ? imageProfileBase64 : profilePayload.delete_image ? '' : (storageUrl + user.image)) + ')' }">
+                    <label v-if="imageProfileBase64 == '' && !user.image" class="tooltip" for="profile-photo">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12 17C14.2091 17 16 15.2091 16 13C16 10.7909 14.2091 9 12 9C9.79086 9 8 10.7909 8 13C8 15.2091 9.79086 17 12 17Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -45,27 +45,27 @@
                       </label>
                     </div>
                   </div>
-                  <input type="file" name="profile-photo" id="profile-photo" @change="handleFileInputChange($event)">
+                  <input autocomplete='off' type="file" name="profile-photo" id="profile-photo" @change="handleFileInputChange($event)">
                   <p>Adicione uma foto de perfil para sua área de trabalho ficar ainda mais personalizada.</p>
                 </div>
               </div>
               <section>
                 <label for="name"><strong>Nome</strong> (obrigatório)</label>
-                <input type="text" value="João" name="name" id="name">
+                <input autocomplete='off' type="text" v-model="profilePayload.name" name="name" id="name">
               </section>
               <section>
                 <label for="surname"><strong>Sobrenome</strong> (obrigatório)</label>
-                <input type="text" value="da Silva" name="surname" id="surname">
+                <input autocomplete='off' type="text" v-model="profilePayload.last_name" name="surname" id="surname">
               </section>
               <section>
                 <label for="email"><strong>E-mail</strong> (obrigatório)</label>
-                <input type="text" value="joaosasilva@gmail.com" name="email" id="email">
+                <input autocomplete='off' v-model="profilePayload.email" type="text" name="email" id="email">
               </section>
             </form>
             <form class="password">
               <section>
                 <label for="new-password"><strong>Crie uma nova senha</strong> (obrigatório)</label>
-                <input placeholder="Pelo menos 6 caracteres" :type="showNewPassword ? 'text':'password'" name="new-password" id="new-password">
+                <input autocomplete='off' placeholder="Pelo menos 6 caracteres" :type="showNewPassword ? 'text':'password'" v-model="profilePayload.password" name="new-password" id="new-password">
                 <button type="button" @click="showNewPassword = !showNewPassword">
                   <svg v-if="showNewPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/eye">
@@ -87,7 +87,7 @@
               </section>
               <section>
                 <label for="repeat-new-password"><strong>Repita a nova senha</strong> (obrigatório)</label>
-                <input placeholder="Pelo menos 6 caracteres" :type="showRepeatNewPassword ? 'text':'password'" name="repeat-new-password" id="repeat-new-password">
+                <input autocomplete='off' placeholder="Pelo menos 6 caracteres" :type="showRepeatNewPassword ? 'text':'password'" v-model="profilePayload.password_confirmation" name="repeat-new-password" id="repeat-new-password">
                 <button type="button" @click="showRepeatNewPassword = !showRepeatNewPassword">
                   <svg v-if="showRepeatNewPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/eye">
@@ -109,8 +109,8 @@
               </section>
             </form>
             <nav>
-              <input @click="isConfirmUpdateDataProfileModal = true" type="button" id="profile-update-infos" value="Salvar alterações">
-              <input @click="isNewPasswordCreateModal = true" type="button" id="profile-update-password" value="Salvar alterações">
+              <input autocomplete='off' @click="updateProfile" :disabled="(profilePayload.password && (profilePayload.password != profilePayload.password_confirmation || profilePayload.password?.length < 6)) ? true : false" type="button" id="profile-update-infos" value="Salvar alterações">
+              <input autocomplete='off' @click="updateProfile" :disabled="(profilePayload.password && (profilePayload.password != profilePayload.password_confirmation || profilePayload.password?.length < 6)) ? true : false" type="button" id="profile-update-password" value="Salvar alterações">
             </nav>
         </main>
         <MyModal :width="'330px !important'" :height="'179px !important'" :isOpen="isNewPasswordCreateModal" :class-name="'new-password-create'" :toggleModal="(v: boolean) => isNewPasswordCreateModal = v" :zIndex="100">
@@ -140,8 +140,8 @@
             <h1>Cuidado!</h1>
             <h2>Deseja mesmo deletar sua foto?</h2>
             <section>
-              <button @click="isConfirmDeletePhotoModal = false; imageProfileBase64 = ''">Sim</button>
-              <input @click="isConfirmDeletePhotoModal = false;" type="button" value="Cancelar">
+              <button @click="isConfirmDeletePhotoModal = false; imageProfileBase64 = ''; profilePayload.delete_image = true;">Sim</button>
+              <input autocomplete='off' @click="isConfirmDeletePhotoModal = false;" type="button" value="Cancelar">
             </section>
           </div>
         </MyModal>
@@ -149,14 +149,74 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
   import MyModal from '@/components/modal/MyModal.vue'
+  import { user, storageUrl } from '@/global/states/GlobalState';
+  import { useAxios } from '@/api/axios';
+  import { AxiosResponse } from 'axios';
 
   /* Starts at the top of the page */
   window.scrollTo({
     top: 0,
     behavior: 'auto'
   });
+
+  const profilePayload = ref<{
+    name?: string;
+    email?: string;
+    last_name?: string;
+    image?: File | null;
+    delete_image?: boolean;
+    password: string;
+    password_confirmation: string
+  }>({
+      name: user.value.name,
+      email: user.value.email,
+      last_name: user.value.last_name,
+      image: null,
+      delete_image: false,
+      password: '',
+      password_confirmation: '',
+    })
+
+  watch(() => user.value, () => {
+    profilePayload.value = ({
+      name: user.value.name,
+      email: user.value.email,
+      last_name: user.value.last_name,
+      image: null,
+      delete_image: false,
+      password: '',
+      password_confirmation: '',
+    })
+  })
+
+  const axios = useAxios()
+
+  function updateProfile(){
+    let payload = new FormData()
+    payload.append('_method', 'PATCH');
+    payload.append('name', profilePayload.value.name as string)
+    payload.append('email', profilePayload.value.email as string)
+    payload.append('last_name', profilePayload.value.last_name as string)
+    payload.append('delete_image', (profilePayload.value.delete_image ? '1' : '0'))
+    if(profilePayload.value.image){
+      payload.append('image', profilePayload.value.image as File)
+    }
+    if(profilePayload.value.password){
+      payload.append('password', profilePayload.value.password)
+    }
+
+    axios.post('/api/profile', payload).then((res: AxiosResponse) => {
+      user.value = res.data.user
+
+      if(isNewPasswordCreateModal.value){
+        isNewPasswordCreateModal.value = true
+      } else{
+        isConfirmUpdateDataProfileModal.value = true
+      }
+    })
+  }
 
   /* Visibility variables for password fields. */
   const showNewPassword = ref<boolean>(false)
@@ -174,7 +234,9 @@
   const handleFileInputChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
     const file: File | null = input.files && input.files[0];
+    profilePayload.value.image = file
     if (file) {
+      profilePayload.value.delete_image = false
       const reader = new FileReader();
       reader.onload = () => {
         if (typeof reader.result === 'string') {
@@ -187,7 +249,7 @@
 </script>
 
 <style lang="scss">
-    @import '../../../global/scss/variables.scss';
+    @import '@/global/scss/variables.scss';
 
     #profile{
       width: 100%;

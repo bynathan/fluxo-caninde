@@ -35,7 +35,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../global/scss/variables.scss';
+    @import '@/global/scss/variables.scss';
 
     .modal {
         width: 100%;

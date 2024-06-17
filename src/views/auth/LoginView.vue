@@ -2,16 +2,16 @@
   <main id="login">
     <section></section>
     <section>
-      <img src="../../assets/images/prefeitura-caninde.png" alt="Logo Prefeitura de Canindé.">
+      <img src="@/assets/images/prefeitura-caninde.png" alt="Logo Prefeitura de Canindé.">
       <h1>Bem-vindo (a) de volta!</h1>
       <form @submit="$event.preventDefault()" action="">
         <section>
           <label for="email">Digite seu e-mail  <strong>*</strong></label>
-          <input v-model="loginForm.email" type="text" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
+          <input autocomplete='off' v-model="loginForm.email" type="text" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
         </section>
         <section>
           <label for="password">Digite sua senha  <strong>*</strong></label>
-          <input v-model="loginForm.password" :type="showPassword ? 'text':'password'" placeholder="ex: 123456" name="password" id="password">
+          <input autocomplete='off' v-model="loginForm.password" :type="showPassword ? 'text':'password'" placeholder="ex: 123456" name="password" id="password">
           <button type="button" @click="showPassword = !showPassword">
             <svg v-if="showPassword" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="vuesax/linear/eye">
@@ -33,23 +33,26 @@
         </section>
         <div>
           <label for="remember">
-            <input type="checkbox" name="remember" id="remember" v-model="loginForm.remeber">
+            <input autocomplete='off' type="checkbox" name="remember" id="remember" v-model="loginForm.remember">
             <span></span>
             <p>Permanecer logado</p>
           </label>
           <RouterLink :to="{name: 'recover-password'}">Esqueci a senha</RouterLink>
         </div>
-        <input :disabled="!(loginForm.email && loginForm.password)" @click="$router.push('/admin/home');" type="button" value="Entrar">
+        <input autocomplete='off' :disabled="!(loginForm.email && loginForm.password)" @click="login" type="button" value="Entrar">
       </form>
-      <img src="../../assets/images/logo-fluxoo.png" alt="Logo fluxoo.">
+      <img src="@/assets/images/logo-fluxoo.png" alt="Logo fluxoo.">
     </section>
   </main>
+  <Loader v-if="isPerformingRequest" :zIndex="99"/>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { useAxios } from '@/api/axios'
-  // import { toast } from 'vue3-toastify';
+  import { isPerformingRequest, useAxios } from '@/api/axios'
+  import router from '@/router';
+  import { toast } from 'vue3-toastify';
+  import Loader from '@/components/loader/Loader.vue'
 
   /* Starts at the top of the page */
   window.scrollTo({
@@ -58,20 +61,20 @@
   });
 
   const showPassword = ref<boolean>(false)
-  const loginForm = ref<{email?:string, password?:string, remeber?:boolean}>({})
-  // const axios = useAxios()
+  const loginForm = ref<{email?:string, password?:string, remember?:boolean}>({})
+  const axios = useAxios()
 
-  // async function login(){
-  //   axios.post('/login', loginForm.value)
-  //   .then(() => {
-  //     // toast.success('logado com sucesso!')
-  //     // todo redirecionar pro admin
-  //   })
-  // }
+  async function login(){
+    axios.post('/login', loginForm.value)
+    .then(() => {
+      toast.success('logado com sucesso!')
+      router.push({name:'admin.home'})
+    })
+  }
 </script>
 
 <style scoped lang="scss">
-  @import '../../global/scss/variables.scss';
+  @import '@/global/scss/variables.scss';
 
   #login{
     min-height: 100vh;
@@ -79,7 +82,7 @@
     grid-template-columns: 50% 50%;
     section{
       &:first-child{
-        background-image: url('../../assets/images/background-login.png');
+        background-image: url('@/assets/images/background-login.png');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 0 0;
@@ -294,7 +297,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('../../assets/images/background-login.png');
+      background-image: url('@/assets/images/background-login.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: 0 0;

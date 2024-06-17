@@ -1,6 +1,6 @@
 <template>
     <nav class="desktop" :class="{ open: menuOpen }">
-        <img src="../../../assets/images/prefeitura-caninde.png" alt="Logo Prefeitura de Canindé." @click="menuOpen = false; $router.push('/admin/home'); checkMenuIsOpen();">
+        <img src="@/assets/images/prefeitura-caninde.png" alt="Logo Prefeitura de Canindé." @click="menuOpen = false; $router.push('/admin/home')">
         <button class="menu" @click="menuOpenOrClose()">
             <figure>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -10,7 +10,7 @@
                 </svg>
             </figure>
         </button>
-        <button :class="{ 'active': $route.path === '/admin/home' || $route.path === '/admin/results' }" @click="$router.push('/admin/home'); menuOpen = false; checkMenuIsOpen();">
+        <button :class="{ 'active': $route.path === '/admin/home' || $route.path === '/admin/results' }" @click="$router.push('/admin/home'); menuOpen = false;">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 15.5V13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -18,7 +18,7 @@
                 </svg>
             </figure>
         </button>
-        <button class="options" :class="{ 'active': $route.path === '/admin/documents', opened: optionListDocuments }" @click="optionListDocuments = !optionListDocuments; openListOptionsDocuments();">
+        <button class="options" :class="{ 'active': $route.path === '/admin/create-documents' || $route.path === '/admin/manage-documents' || $route.path === '/admin/exceptions-documents', opened: optionListDocuments }" @click="optionListDocuments = !optionListDocuments; openListOptionsDocuments();">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/folder">
@@ -30,12 +30,12 @@
             </figure>
         </button>
         <ul>
-            <li v-for="(option, index) in optionsListDocuments" :class="{ selected: optionsListDocuments[index].selected }">
+            <li v-for="(option, index) in optionsListDocuments" :class="{ 'selected': $route.path === `/admin/${option.router}` }" @click="$router.push(`/admin/${option.router}`); menuOpenOrClose();">
                 <p>{{ option.name }}</p>
                 <span></span>
             </li>
         </ul>
-        <button :class="{ 'active': $route.path === '/admin/help' }" @click="$router.push('/admin/help'); menuOpen = false; checkMenuIsOpen();">
+        <button :class="{ 'active': $route.path === '/admin/help' }" @click="$router.push('/admin/help'); menuOpen = false;">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/message-question">
@@ -49,7 +49,7 @@
             </figure>
         </button>
         <div></div>
-        <button :class="{ 'active': $route.path === '/admin/profile' }" @click="$router.push('/admin/profile'); menuOpen = false; checkMenuIsOpen();">
+        <button :class="{ 'active': $route.path === '/admin/profile' }" @click="$router.push('/admin/profile'); menuOpen = false;">
             <figure>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/profile-circle">
@@ -62,7 +62,7 @@
                 </svg>
             </figure>
         </button>
-        <button @click="$router.push('/login')">
+        <button @click="logout">
             <figure>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.4417 14.62L20.0017 12.06L17.4417 9.5M9.76172 12.06H19.9317M11.7617 20C7.34172 20 3.76172 17 3.76172 12C3.76172 7 7.34172 4 11.7617 4" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,12 +79,12 @@
                     <path d="M6 6L18 18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </li>
-            <li v-for="(option, index) in optionsListDocuments" :class="{ selected: optionsListDocuments[index].selected }" @click="optionListDocuments = false; openListOptionsDocuments();">
+            <li v-for="(option, index) in optionsListDocuments" :class="{ 'selected': $route.path === `/admin/${option.router}` }" @click="$router.push(`/admin/${option.router}`); optionListDocuments = false; openListOptionsDocuments();">
                 <p>{{ option.name }}</p>
                 <span></span>
             </li>
         </ul>
-        <button :class="{ 'active': $route.path === '/admin/home' || $route.path === '/admin/results' }" @click="$router.push('/admin/home'); menuOpen = false; checkMenuIsOpen();">
+        <button :class="{ 'active': $route.path === '/admin/home' || $route.path === '/admin/results' }" @click="$router.push('/admin/home'); menuOpen = false;">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 15.5V13" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -92,7 +92,7 @@
                 </svg>
             </figure>
         </button>
-        <button :class="{ 'active': $route.path === '/admin/documents', opened: optionListDocuments}" @click="optionListDocuments = !optionListDocuments; openListOptionsDocuments();">
+        <button :class="{ 'active': $route.path === '/admin/create-documents' || $route.path === '/admin/manage-documents' || $route.path === '/admin/exceptions-documents', opened: optionListDocuments}" @click="optionListDocuments = !optionListDocuments; openListOptionsDocuments();">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/folder">
@@ -110,7 +110,7 @@
                 <path d="M15.5195 19.5601C15.5195 21.2101 14.1695 22.5601 12.5195 22.5601C11.6995 22.5601 10.9395 22.2201 10.3995 21.6801C9.85953 21.1401 9.51953 20.3801 9.51953 19.5601" stroke-width="1.5" stroke-miterlimit="10"/>
             </svg>
         </button>
-        <button  :class="{ 'active': $route.path === '/admin/help' }" @click="$router.push('/admin/help'); menuOpen = false; checkMenuIsOpen();">
+        <button  :class="{ 'active': $route.path === '/admin/help' }" @click="$router.push('/admin/help'); menuOpen = false;">
             <figure>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/message-question">
@@ -123,7 +123,7 @@
                 </svg>
             </figure>
         </button>
-        <button :class="{ 'active': $route.path === '/admin/profile' }" @click="$router.push('/admin/profile'); menuOpen = false; checkMenuIsOpen();">
+        <button :class="{ 'active': $route.path === '/admin/profile' }" @click="$router.push('/admin/profile'); menuOpen = false;">
             <figure>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="vuesax/linear/profile-circle">
@@ -144,7 +144,9 @@
 <script setup lang="ts">
     import { ref, watch } from 'vue';
     import { useRoute } from 'vue-router';
-    import { isNotificationsModalOpen } from '../../../global/states/ModalState'
+    import { isNotificationsModalOpen } from '@/global/states/ModalState'
+    import { useAxios } from '@/api/axios';
+    import router from '@/router';
 
     /* Defines whether the menu is open or not. */
     const menuOpen = ref<boolean>(false);
@@ -174,17 +176,26 @@
     const optionListDocuments = ref<boolean>(false);
 
     /* List menu options */
-    const optionsListDocuments = ref<{ name: string; selected: boolean }[]>([
-        { name: 'Criar', selected: false },
-        { name: 'Gerenciar', selected: false },
-        { name: 'Exceções', selected: false }
+    const optionsListDocuments = ref<{ name: string; router: string }[]>([
+        { name: 'Criar', router: 'create-documents' },
+        { name: 'Gerenciar', router: 'manage-documents' },
+        { name: 'Exceções', router: 'exceptions-documents' }
     ]);
+
+    const axios = useAxios()
+
+    const logout = () => {
+        axios.post('/logout').then(() => {
+            router.push({name: 'login'})
+        })
+    }
 
     /* Assigns false to all options and assigns true to the selected options documents. */
     const toggleOptionDocumentsSelected = (index: number) => {
         optionsListDocuments.value.forEach((option, i) => {
             option.selected = i === index;
         });
+        toggleOptionSelected(1);
         menuOpen.value = !menuOpen.value;
         checkMenuIsOpen();
     };
@@ -211,8 +222,8 @@
 </script>
 
 <style lang="scss">
-    @import '../../../global/scss/variables.scss';
-    @import '../../../global/scss/animations.scss';
+    @import '@/global/scss/variables.scss';
+    @import '@/global/scss/animations.scss';
 
     nav{
         &.desktop{

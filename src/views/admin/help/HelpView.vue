@@ -16,8 +16,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -42,8 +42,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -68,8 +68,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -94,8 +94,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -120,8 +120,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -146,8 +146,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -172,8 +172,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -198,8 +198,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -230,8 +230,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -256,8 +256,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -282,8 +282,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -308,8 +308,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -334,8 +334,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -360,8 +360,8 @@
           <div class="card">
             <h1>Documento word</h1>
             <h1>Documento PDF</h1>
-            <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
-            <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+            <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
             <div class="actions">
               <button class="tooltip">
                 <figure>
@@ -396,7 +396,7 @@
 </script>
 
 <style lang="scss">
-  @import '../../../global/scss/variables.scss';
+  @import '@/global/scss/variables.scss';
 
   .models{
     width: 100%;

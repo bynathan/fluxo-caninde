@@ -3,16 +3,16 @@
         <header>
             <section>
                 <label for="search">
-                    <input autocomplete='off' name="search" id="search" type="text" placeholder="Busque por data, número de ofício, título do documento" @keyup.enter="$router.push('/admin/results')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" @click="$router.push('/admin/results')">
+                    <input autocomplete='off' name="search" id="search" type="text" placeholder="Busque por data, número de ofício, título do documento" v-model="searchInput" @keyup.enter="$router.push('/admin/results')">
+                    <svg :class="{typed: searchInput.length > 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" @click="$router.push('/admin/results')">
                         <path d="M17.5002 17.5002L13.881 13.881M13.881 13.881C14.5001 13.2619 14.9912 12.527 15.3262 11.7181C15.6612 10.9093 15.8337 10.0423 15.8337 9.16684C15.8337 8.29134 15.6612 7.42441 15.3262 6.61555C14.9912 5.80669 14.5001 5.07174 13.881 4.45267C13.2619 3.8336 12.527 3.34252 11.7181 3.00748C10.9093 2.67244 10.0423 2.5 9.16684 2.5C8.29134 2.5 7.42441 2.67244 6.61555 3.00748C5.80669 3.34252 5.07174 3.8336 4.45267 4.45267C3.2024 5.70295 2.5 7.39868 2.5 9.16684C2.5 10.935 3.2024 12.6307 4.45267 13.881C5.70295 15.1313 7.39868 15.8337 9.16684 15.8337C10.935 15.8337 12.6307 15.1313 13.881 13.881Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </label>
             </section>
             <section>
                 <div class="infos">
-                    <h1>Olá, <strong>João da Silva</strong></h1>
-                    <h2>Último acesso em 00/00/24 as 00:00</h2>
+                    <h1>Olá, <strong>{{ user.name }}</strong></h1>
+                    <!-- <h2>Último acesso em 77/77/77 as 77:77</h2> -->
                 </div>
                 <button @click="isNotificationsModalOpen = true">
                     <figure>
@@ -23,7 +23,7 @@
                         </svg>
                     </figure>
                 </button>
-                <div @click="$router.push('/admin/profile')" class="profile" style="background-image: url('https://img.freepik.com/fotos-premium/homem-de-terno-e-gravata-esta-posando-para-a-foto-ia-generativa_97167-21057.jpg');" role="img" aria-label="Foto de perfil do usuário."></div>
+                <div @click="$router.push('/admin/profile')" class="profile" :style="{backgroundImage: `url('${storageUrl + user.image}')`}" role="img" aria-label="Foto de perfil do usuário."></div>
             </section>
         </header>
         <div class="alert red" v-if="isAlertVisible">
@@ -154,7 +154,7 @@
                 </div>
                 <div class="itens" ref="contentModelsRef" @mousedown="startDragging('models', $event)" @mousemove="dragging('models', $event)" @mouseup="stopDragging" @mouseleave="stopDragging">
                     <div class="item">
-                        <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -236,7 +236,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -277,7 +277,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/adobe.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -338,7 +338,7 @@
                 </div>
                 <div class="itens" ref="contentFluxoRef" @mousedown="startDragging('fluxo', $event)" @mousemove="dragging('fluxo', $event)" @mouseup="stopDragging" @mouseleave="stopDragging">
                     <div class="item">
-                        <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -379,7 +379,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -420,7 +420,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -461,7 +461,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="../../../assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
+                        <img src="@/assets/images/word.png" alt="Imagem do tipo de arquivo do documento.">
                         <div class="infos">
                             <h1>Documento</h1>
                             <h2>Visualize, baixe ou compartilhe o modelo desse ofício.</h2>
@@ -548,13 +548,17 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import MyModal from '@/components/modal/MyModal.vue'
-  import { isNotificationsModalOpen } from '../../../global/states/ModalState'
+  import { isNotificationsModalOpen } from '@/global/states/ModalState'
+  import { storageUrl, user } from '@/global/states/GlobalState';
 
   /* Starts at the top of the page */
   window.scrollTo({
     top: 0,
     behavior: 'auto'
   });
+
+  /* Input search ref v-model */
+  const searchInput = ref<string>('');
 
   /* Defines whether the alert is visible or not. */
   const isAlertVisible = ref<boolean>(true);
@@ -626,7 +630,7 @@
 </script>
 
 <style lang="scss">
-    @import '../../../global/scss/variables.scss';
+    @import '@/global/scss/variables.scss';
 
     #home{
         width: 100%;
@@ -698,6 +702,9 @@
                             right: 20px;
                             stroke: #090909;
                             cursor: pointer;
+                            &.typed{
+                              stroke: $fluxoo-primary-color;
+                            }
                         }
                     }
                 }
@@ -1407,23 +1414,23 @@
                     cursor: pointer;
                     filter: drop-shadow(0px 0px 25px rgba(0, 0, 0, 0.12));
                     svg{
-                        width: 24px;
-                        min-width: 24px;
-                        height: 24px;
-                        min-height: 24px;
-                        stroke: #090909;
-                        transition: stroke .2s;
+                      width: 24px;
+                      min-width: 24px;
+                      height: 24px;
+                      min-height: 24px;
+                      stroke: #090909;
+                      transition: stroke .2s;
                     }
                     &:nth-child(2){
-                        position: absolute;
-                        top: 59px;
-                        left: 203px;
-                        rotate: 180deg;
+                      position: absolute;
+                      top: 68px;
+                      left: 203px;
+                      rotate: 180deg;
                     }
                     &:nth-child(4){
-                        position: absolute;
-                        top: 59px;
-                        right: 8px;
+                      position: absolute;
+                      top: 68px;
+                      right: 8px;
                     }
                     &:hover{
                         background: $fluxoo-primary-color;

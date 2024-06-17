@@ -9,24 +9,26 @@
       <p>Recuperar senha</p>
     </label>
     <main>
-      <img src="../../assets/images/lock.png" alt="Imagem de um cadeado.">
+      <img src="@/assets/images/lock.png" alt="Imagem de um cadeado.">
       <h1>Esqueceu sua senha</h1>
       <h2>Informe o e-mail que usa para acessar o sistema e enviaremos um link verificador.</h2>
       <form action="">
         <div>
           <label for="email">Digite seu e-mail *</label>
-          <input v-model="email" type="email" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
+          <input autocomplete='off' v-model="email" type="email" placeholder="ex: joaosasilva@gmail.com" name="email" id="email">
         </div>
         <nav>
-          <input @click="recoverPasword" :disabled="!email.length" type="button" value="Solicitar">
+          <input autocomplete='off' @click="recoverPasword" :disabled="!email.length" type="button" value="Solicitar">
         </nav>
       </form>
     </main>
   </div>
+  <Loader v-if="isPerformingRequest" :zIndex="99"/>
 </template>
 
 <script setup lang="ts">
-  import { useAxios } from '@/api/axios';
+  import { isPerformingRequest, useAxios } from '@/api/axios';
+  import Loader from '@/components/loader/Loader.vue'
   import { ref } from 'vue';
   import { toast } from 'vue3-toastify';
 
@@ -48,7 +50,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '../../global/scss/variables.scss';
+  @import '@/global/scss/variables.scss';
 
   #recover{
     animation: enterContent ease .4s;

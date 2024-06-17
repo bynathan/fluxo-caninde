@@ -8,9 +8,9 @@
           </figure>
           <p>Resultado busca</p>
       </label>
-      <input type="radio" name="results" id="results-docs" checked>
-      <input type="radio" name="results" id="results-organs">
-      <input type="radio" name="results" id="results-users">
+      <input autocomplete='off' type="radio" name="results" id="results-docs" checked>
+      <input autocomplete='off' type="radio" name="results" id="results-organs">
+      <input autocomplete='off' type="radio" name="results" id="results-users">
       <main>
           <div class="tab">
             <label for="results-docs">Documentos</label>
@@ -85,7 +85,7 @@
 </script>
 
 <style lang="scss">
-  @import '../../../global/scss/variables.scss';
+  @import '@/global/scss/variables.scss';
 
   #results{
     width: 100%;

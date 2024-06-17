@@ -9,28 +9,31 @@
       <p>Nova senha</p>
     </label>
     <main>
-      <img src="../../assets/images/shield.png" alt="Imagem de um escudo verde.">
+      <img src="@/assets/images/shield.png" alt="Imagem de um escudo verde.">
       <h1>Criar nova senha</h1>
       <h2>Digite abaixo a nova senha  que você quer criar para acessar o sistema.</h2>
       <form action="">
         <div>
           <label for="new-password">Crie uma nova senha *</label>
-          <input v-model="resetPasswordForm.password" type="password" placeholder="Com pelo menos 6 caracteres" name="new-password" id="new-password">
+          <input autocomplete='off' v-model="resetPasswordForm.password" type="password" placeholder="Com pelo menos 6 caracteres" name="new-password" id="new-password">
         </div>
         <div>
           <label for="confirm-new-password">Repita a nova senha *</label>
-          <input v-model="resetPasswordForm.password_confirmation" type="password" placeholder="A mesma do campo anterior" name="confirm-new-password" id="confirm-new-password">
+          <input autocomplete='off' v-model="resetPasswordForm.password_confirmation" type="password" placeholder="A mesma do campo anterior" name="confirm-new-password" id="confirm-new-password">
         </div>
         <nav>
-          <input :disabled="!resetPasswordForm.password || !resetPasswordForm?.password_confirmation || (resetPasswordForm.password != resetPasswordForm?.password_confirmation) || resetPasswordForm.password?.length < 6" type="button" value="Criar" @click="resetPassword">
+          <input autocomplete='off' :disabled="!resetPasswordForm.password || !resetPasswordForm?.password_confirmation || (resetPasswordForm.password != resetPasswordForm?.password_confirmation) || resetPasswordForm.password?.length < 6" type="button" value="Criar" @click="resetPassword">
         </nav>
       </form>
     </main>
   </div>
+  <Loader v-if="isPerformingRequest" :zIndex="99"/>
+
 </template>
 
 <script lang="ts" setup>
-  import { useAxios } from '@/api/axios';
+  import { isPerformingRequest, useAxios } from '@/api/axios';
+  import Loader from '@/components/loader/Loader.vue'
   import router from '@/router';
   import { ref, defineProps } from 'vue';
   import { useRoute } from 'vue-router';
@@ -57,7 +60,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '../../global/scss/variables.scss';
+  @import '@/global/scss/variables.scss';
 
   #reset{
     animation: enterContent ease .4s;
