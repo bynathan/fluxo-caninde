@@ -39,7 +39,7 @@
           </label>
           <RouterLink :to="{name: 'recover-password'}">Esqueci a senha</RouterLink>
         </div>
-        <input autocomplete='off' :disabled="!(loginForm.email && loginForm.password)" @click="login" type="button" value="Entrar">
+        <input autocomplete='off' :disabled="!(loginForm.email && loginForm.password)" @click="$router.push('/admin/home')" type="button" value="Entrar">
       </form>
       <img src="@/assets/images/logo-fluxoo.png" alt="Logo fluxoo.">
     </section>
